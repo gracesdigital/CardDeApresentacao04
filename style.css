@@ -1,0 +1,193 @@
+/* GRACES DIGITAL — card escuro com detalhes marrom, lilás e creme */
+:root {
+  --black: #080808;
+  --brown: #b49a76;
+  --brown-dark: #68513d;
+  --cream: #f5eee6;
+  --lilac: #b49a76;
+}
+* { box-sizing: border-box; }
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 24px 14px;
+  display: grid;
+  place-items: center;
+  overflow-x: hidden;
+  color: var(--cream);
+  background:
+    radial-gradient(ellipse at 15% 20%, rgba(180,154,118,.13), transparent 36%),
+    radial-gradient(ellipse at 85% 80%, rgba(189,165,232,.10), transparent 34%),
+    #11100f;
+  font-family: "Montserrat", Arial, sans-serif;
+}
+.ambient {
+  position: fixed;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: .18;
+  pointer-events: none;
+  animation: float 8s ease-in-out infinite alternate;
+}
+.ambient--one { top: 8%; left: -100px; background: var(--brown); }
+.ambient--two { right: -100px; bottom: 8%; background: var(--lilac); animation-delay: -3s; }
+.card {
+  isolation: isolate;
+  position: relative;
+  width: min(100%, 390px);
+  min-height: 690px;
+  padding: 48px 28px 25px;
+  overflow: hidden;
+  background: linear-gradient(145deg, #050505, #0b0a09 65%, #100d0b);
+  border: 1px solid rgba(180,154,118,.42);
+  box-shadow: 0 22px 80px rgba(0,0,0,.55), 0 0 35px rgba(180,154,118,.06);
+}
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(180,154,118,.12);
+  pointer-events: none;
+  z-index: -1;
+}
+.hanging-lines {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 55px;
+  display: flex;
+  gap: 5px;
+  transform: translateX(-50%);
+}
+.hanging-lines span { width: 2px; background: linear-gradient(var(--cream), var(--brown)); }
+.hanging-lines span:first-child { height: 52px; }
+.hanging-lines span:last-child { height: 65px; }
+.corner-dots {
+  position: absolute;
+  width: 100px;
+  height: 80px;
+  opacity: .7;
+  background-image: radial-gradient(var(--cream) 1.2px, transparent 1.4px);
+  background-size: 15px 15px;
+  pointer-events: none;
+}
+.corner-dots--top { top: 5px; right: 4px; mask-image: linear-gradient(135deg, #000, transparent); }
+.corner-dots--bottom { bottom: 8px; left: 5px; mask-image: linear-gradient(315deg, transparent, #000); }
+.profile { text-align: center; position: relative; z-index: 1; }
+.portrait-ring {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 15px;
+  padding: 5px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cream), var(--brown), var(--lilac));
+  box-shadow: 0 0 0 1px rgba(255,255,255,.12), 0 0 27px rgba(180,154,118,.2);
+}
+.portrait-ring__glow {
+  position: absolute;
+  inset: -9px;
+  border: 1px solid rgba(189,165,232,.28);
+  border-radius: 50%;
+  animation: pulse 3.5s ease-in-out infinite;
+}
+.portrait {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--black);
+  background: #24201c;
+}
+.profile h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: .09em;
+}
+.role {
+  margin: 4px 0 0;
+  font-size: 11px;
+  letter-spacing: .17em;
+  color: var(--brown);
+}
+.tiny-rule { width: 42px; height: 2px; margin: 13px auto 0; background: linear-gradient(90deg, var(--brown), var(--lilac)); }
+.actions {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 17px;
+  margin: 25px 0 0;
+}
+.action {
+  min-height: 80px;
+  padding: 12px 7px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  color: #111;
+  background: linear-gradient(145deg, #fff, #eee9e4);
+  border: 1px solid rgba(255,255,255,.85);
+  border-radius: 11px;
+  box-shadow: 0 5px 0 rgba(180,154,118,.18);
+  text-decoration: none;
+  transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+}
+.action:hover, .action:focus-visible {
+  outline: none;
+  transform: translateY(-5px) scale(1.025);
+  background: #f3e6d7;
+  box-shadow: 0 10px 24px rgba(180,154,118,.22);
+}
+.action__icon { display: grid; place-items: center; }
+.action svg {
+  width: 30px;
+  height: 30px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.action span:last-child { font-size: 8px; font-weight: 800; }
+.instruction {
+  position: relative;
+  z-index: 1;
+  margin: 30px -10px 0;
+  text-align: center;
+  color: var(--cream);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .22em;
+}
+.hand { color: var(--brown); font-size: 16px; margin-right: 5px; }
+footer {
+  position: relative;
+  z-index: 1;
+  margin-top: 28px;
+  text-align: center;
+  color: rgba(245,238,230,.42);
+  font-size: 8px;
+  letter-spacing: .18em;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: .4; }
+  50% { transform: scale(1.06); opacity: .95; }
+}
+@keyframes float {
+  from { transform: translateY(-10px); }
+  to { transform: translateY(18px); }
+}
+@media (max-width: 420px) {
+  body { padding: 0; background: #080808; }
+  .card { width: 100%; min-height: 100dvh; padding-top: 45px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
